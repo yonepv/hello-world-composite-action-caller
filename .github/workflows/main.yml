@@ -11,7 +11,7 @@ jobs:
               with:
                 # action file is located in another repo
                 repository: yonepv/hello-world-composite-action
-                # ref: mybranch # in case it's not master branch
+                ref: main # in case it's not master branch
                 # use deploy key instead of personal access token
                 ssh-key: ${{ secrets.WORKFLOWS_DEPLOYMENT_KEY }}
                 path: .github/workflows
