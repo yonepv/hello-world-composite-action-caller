@@ -21,23 +21,4 @@ jobs:
               shell: bash
               env:
                 RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
-            
-            # - uses: actions/checkout@v4
-            # - name: Get composite run steps repository
-            #   uses: actions/checkout@v4
-            #   with:
-            #     # action file is located in another repo
-            #     repository: yonepv/hello-world-composite-action
-            #     ref: main # in case it's not master branch
-            #     # use deploy key instead of personal access token
-            #     ssh-key: ${{ secrets.WORKFLOWS_DEPLOYMENT_KEY }}
-            #     path: .github/workflows
-            # - id: foo
-            #   uses: ./.github/workflows/actions #yonepv/hello-world-composite-action@4e0c0ff
-            #   with:
-            #     who-to-greet: 'RP the Octocat'
-            # - run: echo random-number "$RANDOM_NUMBER"
-            #   shell: bash
-            #   env:
-            #     RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
                 
