@@ -13,7 +13,8 @@ jobs:
             # Use the Composite Action
             - id: foo
               name: Get composite run steps repository
-              uses: yonepv/hello-world-composite-action@main
+              #uses: yonepv/hello-world-composite-action@main
+              uses: yonepv/hello-world-composite-action/.github/workflows/sample/action.yml@main
               with:
                 who-to-greet: 'RP the Octocat'
             
