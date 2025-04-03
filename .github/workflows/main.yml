@@ -1,7 +1,7 @@
 on: [push]
 
 jobs:
-    hello_worl_job:
+    hello_worl_job_root:
         runs-on: ubuntu-latest
         name: A job to say hello
         steps:
@@ -11,15 +11,60 @@ jobs:
             #   run: echo Pretend to do other things
 
             # Use the Composite Action
-            - id: foo
+            - id: actionInRoot
               name: Get composite run steps repository
-              #uses: yonepv/hello-world-composite-action@main
-              uses: yonepv/hello-world-composite-action/sample@main
+              uses: yonepv/hello-world-composite-action@main
               with:
-                who-to-greet: 'RP the Octocat'
+                who-to-greet: 'RP the Octocat calling to root action'
             
             - run: echo random-number "$RANDOM_NUMBER"
               shell: bash
               env:
-                RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
+                RANDOM_NUMBER: ${{ steps.actionInRoot.outputs.random-number }}
+
+    hello_worl_job_sample_folder:
+        runs-on: ubuntu-latest
+        name: A 2nd job to say hello
+        steps:
+            - uses: actions/checkout@v4
+                
+            # - name: Do anything else
+            #   run: echo Pretend to do other things
+
+            # Use the Composite Action
+            - id: actionInSample
+              name: Get composite run steps repository
+              uses: yonepv/hello-world-composite-action/sample@main
+              with:
+                who-to-greet: 'RP the Octocat calling to the sample action'
+            
+            - run: echo random-number "$RANDOM_NUMBER"
+              shell: bash
+              env:
+                RANDOM_NUMBER: ${{ steps.actionInSample.outputs.random-number }}                
+
+    hello_worl_job_github_workflow_folder:
+        runs-on: ubuntu-latest
+        name: A 3rd job to say hello
+        steps:
+            - uses: actions/checkout@v4
+                
+            # - name: Do anything else
+            #   run: echo Pretend to do other things
+
+            # Use the Composite Action
+            - id: actionInGitHubWrokflows
+              name: Get composite run steps repository
+              #uses: yonepv/hello-world-composite-action@main
+              #uses: yonepv/hello-world-composite-action/sample@main
+              uses: yonepv/hello-world-composite-action/.github/workflows/sample@main
+              with:
+                who-to-greet: 'RP the Octocat calling to the .github/workflows/sample action'
+            
+            - run: echo random-number "$RANDOM_NUMBER"
+              shell: bash
+              env:
+                RANDOM_NUMBER: ${{ steps.actionInGitHubWrokflows.outputs.random-number }}                
+
+                
                 
